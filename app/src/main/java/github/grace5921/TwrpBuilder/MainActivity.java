@@ -31,7 +31,6 @@ import android.widget.Toast;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
 import com.twrpbuilder.rootchecker.RootChecker;
 
 import github.grace5921.TwrpBuilder.Fragment.BackupFragment;
@@ -47,8 +46,6 @@ import github.grace5921.TwrpBuilder.app.LoginActivity;
 import github.grace5921.TwrpBuilder.app.SettingsActivity;
 import github.grace5921.TwrpBuilder.util.Config;
 
-import static github.grace5921.TwrpBuilder.Fragment.BackupFragment.riversRef;
-
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     /*Fragments*/
@@ -63,9 +60,6 @@ public class MainActivity extends AppCompatActivity
     private DevsFragment mDevsFragment;
     /*Strings*/
     private String Email="user@user.com";
-
-    /*Firebase*/
-    private FirebaseAuth mFirebaseAuth;
 
     /*Ads */
     private AdView mAdView;
@@ -86,7 +80,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        mFirebaseAuth=FirebaseAuth.getInstance();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -146,7 +139,6 @@ public class MainActivity extends AppCompatActivity
         }*/
 
         /*replace email with users email*/
-        mUserEmail.setText(mFirebaseAuth.getCurrentUser().getEmail());
 
         /*My Functions :)*/
         checkPermission();
@@ -183,21 +175,6 @@ public class MainActivity extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_cancel_request) {
 // Delete the file
-            riversRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    Snackbar.make(getCurrentFocus(), R.string.successfully_delete_data, Snackbar.LENGTH_INDEFINITE)
-                            .setAction("Action", null).show();
-
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Snackbar.make(getCurrentFocus(), R.string.failed_to_delete_data, Snackbar.LENGTH_INDEFINITE)
-                            .setAction("Action", null).show();
-
-                }
-            });
 
 
             return true;
@@ -237,7 +214,6 @@ public class MainActivity extends AppCompatActivity
             updateFragment(mFragmentRelApp);
             setTitle("App Updates");
         }else if (id == R.id.action_log_out) {
-            FirebaseAuth.getInstance().signOut();
             startActivity(new Intent(MainActivity.this, LoginActivity.class)); //Go back to home page
             finish();
         }else if (id==R.id.nav_thanks)
@@ -336,14 +312,8 @@ public class MainActivity extends AppCompatActivity
         }else {
             nav_Menu.findItem(R.id.nav_backup).setVisible(false);
         }
-        if (mFirebaseAuth.getCurrentUser().getEmail()==Email)
-        {
-            nav_Menu.findItem(R.id.nav_dev_fragment).setVisible(true);
-        }
-        else
-        {
-            /*Can't do anything for your sorry*/
-        }
+        nav_Menu.findItem(R.id.nav_dev_fragment).setVisible(true);
+
     }
 
 

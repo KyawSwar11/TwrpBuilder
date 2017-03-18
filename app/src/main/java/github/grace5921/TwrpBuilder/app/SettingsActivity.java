@@ -10,8 +10,6 @@ import android.widget.Button;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import github.grace5921.TwrpBuilder.R;
 
@@ -21,7 +19,6 @@ import github.grace5921.TwrpBuilder.R;
 
 public class SettingsActivity extends AppCompatActivity {
     private Button DeleteUser;
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     @NonNull
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,18 +30,6 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                user.delete()
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    Log.d("User Account: ", "User account deleted.");
-                                }
-                            }
-                        });
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(SettingsActivity.this, LoginActivity.class)); //Go back to home page
-                finish();
 
             }
         });
