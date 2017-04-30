@@ -313,9 +313,9 @@ public class MainActivity extends AppCompatActivity
             nav_Menu.findItem(R.id.nav_backup).setVisible(false);
         }
         nav_Menu.findItem(R.id.nav_dev_fragment).setVisible(true);
+        nav_Menu.findItem(R.id.nav_app_updates).setVisible(false);
+        nav_Menu.findItem(R.id.action_log_out).setVisible(false);
+        nav_Menu.findItem(R.id.nav_thanks).setVisible(false);
 
     }
-
-
 }
-
