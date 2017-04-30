@@ -30,6 +30,7 @@ import java.util.List;
 
 import eu.chainfire.libsuperuser.Shell;
 import github.grace5921.TwrpBuilder.R;
+import github.grace5921.TwrpBuilder.app.SendMail;
 import github.grace5921.TwrpBuilder.util.Config;
 import github.grace5921.TwrpBuilder.util.FileUtil;
 import github.grace5921.TwrpBuilder.util.ShellExecuter;
@@ -200,6 +201,9 @@ public class BackupFragment extends Fragment {
         mEmailButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                SendMail sm = new SendMail(getContext(), "twrpbuilder024@gmail.com", "hi", "hi");
+                sm.execute();
 
             }
         });
