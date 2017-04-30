@@ -38,6 +38,24 @@
                 android:visibility="gone"
                 android:layout_gravity="center_horizontal"/>
 
+            <Button
+                android:text="Delete Backup"
+                android:textColor="#424242"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/delete_backup"
+                android:visibility="gone"
+                android:layout_gravity="center_horizontal"/>
+
+            <Button
+                android:text="Mail"
+                android:textColor="#424242"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/mail_backup"
+                android:visibility="gone"
+                android:layout_gravity="center_horizontal"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

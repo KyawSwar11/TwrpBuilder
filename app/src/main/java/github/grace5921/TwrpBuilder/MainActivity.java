@@ -197,7 +197,7 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_backup) {
+        if (id == R.id.nav_build) {
             updateFragment(mBackupFragment);
             setTitle("Request Twrp");
         } else if (id == R.id.nav_help) {
@@ -310,7 +310,7 @@ public class MainActivity extends AppCompatActivity
         if(RootChecker.isDeviceRooted()){
             /*Good Job!*/
         }else {
-            nav_Menu.findItem(R.id.nav_backup).setVisible(false);
+            nav_Menu.findItem(R.id.nav_build).setVisible(false);
         }
         nav_Menu.findItem(R.id.nav_dev_fragment).setVisible(true);
         nav_Menu.findItem(R.id.nav_app_updates).setVisible(false);

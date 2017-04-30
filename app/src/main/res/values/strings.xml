@@ -77,6 +77,7 @@
     <string name="forgot_password_msg">We just need your registered Email Id to sent you password reset instructions.</string>
     <string name="login_image">Login Image</string>
     <string name="backup">Backup</string>
+    <string name="build">Build</string>
     <string name="tools">Tools</string>
     <string name="about">About</string>
     <string name="help">Help</string>

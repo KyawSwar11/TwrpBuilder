@@ -31,6 +31,8 @@ import java.util.List;
 import eu.chainfire.libsuperuser.Shell;
 import github.grace5921.TwrpBuilder.R;
 import github.grace5921.TwrpBuilder.util.Config;
+import github.grace5921.TwrpBuilder.util.FileUtil;
+import github.grace5921.TwrpBuilder.util.ShellExecuter;
 
 import static github.grace5921.TwrpBuilder.util.Config.CheckDownloadedTwrp;
 
@@ -41,10 +43,8 @@ import static github.grace5921.TwrpBuilder.util.Config.CheckDownloadedTwrp;
 public class BackupFragment extends Fragment {
 
     /*Buttons*/
-    public static Button mUploadBackup;
-    public static Button mDownloadRecovery;
-    private Button mBackupButton;
-    private Button mCancel;
+    public static Button mUploadBackup,mDownloadRecovery,mBackupButton,mCancel,mEmailButton,mDeleteBackupButton;
+
     /*TextView*/
     private TextView ShowOutput;
     private TextView mBuildDescription;
@@ -82,6 +82,9 @@ public class BackupFragment extends Fragment {
 
         mBackupButton = (Button) view.findViewById(R.id.BackupRecovery);
         mUploadBackup = (Button) view.findViewById(R.id.UploadBackup);
+        mEmailButton = (Button) view.findViewById(R.id.mail_backup);
+        mDeleteBackupButton = (Button) view.findViewById(R.id.delete_backup);
+
         mDownloadRecovery = (Button) view.findViewById(R.id.get_recovery);
         mCancel = (Button) view.findViewById(R.id.cancel_upload);
 
@@ -167,22 +170,39 @@ public class BackupFragment extends Fragment {
                         ShowOutput.setText("Backed up recovery " + recovery_output_path);
                         Snackbar.make(view, R.string.made_recovery_backup, Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
-                        mUploadBackup.setVisibility(View.VISIBLE);
+                        /*mUploadBackup.setVisibility(View.VISIBLE);*/
+                        mDeleteBackupButton.setVisibility(View.VISIBLE);
+                        mEmailButton.setVisibility(View.VISIBLE);
                     }
                 }
         );
 
-        mUploadBackup.setOnClickListener(
+      /*  mUploadBackup.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Snackbar.make(view, R.string.Uploading_please_wait, Snackbar.LENGTH_INDEFINITE)
                                 .setAction("Action", null).show();
-                        //creating a new user
                         uploadStream();
                     }
                 }
-        );
+        );*/
+      mDeleteBackupButton.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View view) {
+              mDeleteBackupButton.setVisibility(View.GONE);
+              mEmailButton.setVisibility(View.GONE);
+              mBackupButton.setVisibility(View.VISIBLE);
+              ShellExecuter.rm(getContext(),"TwrpBuilder/TwrpBuilderRecoveryBackup.tar");
+          }
+      });
+
+        mEmailButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
         return view;
     }
@@ -190,6 +210,13 @@ public class BackupFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+
+        mDeleteBackupButton=(Button)getView().findViewById(R.id.delete_backup);
+        mEmailButton=(Button)getActivity().findViewById(R.id.mail_backup);
+        if (BackupExist()) {
+            mDeleteBackupButton.setVisibility(View.VISIBLE);
+            mEmailButton.setVisibility(View.VISIBLE);
+        }
 
 
     }
@@ -201,4 +228,8 @@ public class BackupFragment extends Fragment {
     private void DownloadStream() {
 
     }
+    public static boolean BackupExist() {
+        return new File("/sdcard/TwrpBuilder/TwrpBuilderRecoveryBackup.tar").isFile();
+    }
+
 }
