@@ -209,7 +209,7 @@ public class BackupFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                SendMail sm = new SendMail(getContext(), "twrpbuilder024@gmail.com", "hi", "hi");
+                SendMail sm = new SendMail(getContext(), "twrpbuilder@mail.com", "hi", "hi");
                 sm.execute();
 
             }
