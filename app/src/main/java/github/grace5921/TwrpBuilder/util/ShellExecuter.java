@@ -64,8 +64,29 @@ public class ShellExecuter {
         File dir = Environment.getExternalStorageDirectory();
         Log.d(TAG,"Request to delete "+ dir+"/"+name + " received .");
         File file = new File(dir, "/"+name);
-        boolean deleted = file.delete();
-        Log.d(TAG,"File "+ name + " deleted .");
+        if(file.isFile())
+        {
+            Log.d(TAG,"Found file "+name+" .");
+            file.delete();
+            Log.i(TAG,"File "+name+" deleted .");
+
+        }else if(file.isDirectory()){
+            Log.d(TAG,"Found dir "+name+" .");
+            rmDir(name);
+        }
+    }
+
+    public static void rmDir(String name){
+        File dir = new File(Environment.getExternalStorageDirectory()+"/"+name);
+        if (dir.isDirectory())
+        {
+            String[] children = dir.list();
+            for (int i = 0; i < children.length; i++)
+            {
+                new File(dir, children[i]).delete();
+            }
+            Log.i(TAG,"Folder "+name+" deleted .");
+        }
     }
 
     public static void mkdir(String name){

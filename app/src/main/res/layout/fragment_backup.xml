@@ -47,15 +47,6 @@
                 android:visibility="gone"
                 android:layout_gravity="center_horizontal"/>
 
-            <Button
-                android:text="Mail"
-                android:textColor="#424242"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/mail_backup"
-                android:visibility="gone"
-                android:layout_gravity="center_horizontal"/>
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -108,4 +99,28 @@
                 android:layout_height="wrap_content" />
         </LinearLayout>
     </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/card_view1"
+        android:layout_gravity="center"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginTop="5dp"
+        card_view:cardElevation="3dp">
+        <Button
+            android:text="Mail"
+            android:textColor="#424242"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/mail_backup"
+            android:visibility="gone"
+            android:layout_gravity="center_horizontal"/>
+
+    </android.support.v7.widget.CardView>
+
 </LinearLayout>

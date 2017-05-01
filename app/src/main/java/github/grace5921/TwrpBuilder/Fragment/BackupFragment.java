@@ -201,7 +201,7 @@ public class BackupFragment extends Fragment {
               mDeleteBackupButton.setVisibility(View.GONE);
               mEmailButton.setVisibility(View.GONE);
               mBackupButton.setVisibility(View.VISIBLE);
-              ShellExecuter.rm(getContext(),"TwrpBuilder/TwrpBuilderRecoveryBackup.tar");
+              ShellExecuter.rm(getContext(),"TwrpBuilder");
           }
       });
 
